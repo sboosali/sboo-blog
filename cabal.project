@@ -12,5 +12,16 @@ optional-packages:
 
 ----------------------------------------
 
+package pandoc
+ extra-include-dirs: /home/sboo/.nix-profile/include/
+ extra-lib-dirs:     /home/sboo/.nix-profile/lib/
+ -- ^
+ -- location of `z`, a system dependency.
+
+package JuicyPixels
+ extra-include-dirs: /home/sboo/.nix-profile/include/
+ extra-lib-dirs:     /home/sboo/.nix-profile/lib/
+ -- ^
+ -- location of `z`, a system dependency.
 
 ----------------------------------------
