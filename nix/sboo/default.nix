@@ -5,7 +5,7 @@
 ########################################
 let
 
-mkDerivationOnlySystemBuildInputs = p:
+mkDerivationOnlySystemBuildInputs = 
  stdenv.mkDerivation {
   name        = ''${p.pname}--system-environment'';
   buildInputs = getSystemBuildInputs p;

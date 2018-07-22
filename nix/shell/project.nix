@@ -1,0 +1,4 @@
+{
+ name = "sboo-blog";
+ root = (../..);
+}

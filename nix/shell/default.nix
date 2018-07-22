@@ -9,25 +9,19 @@ inherit (nixpkgs)
 
 in
 ########################################
-# let
+let
 
-# haskell =
-#  import ../haskell {
-#   inherit nixpkgs;
-#  };
+project =
+ import ./project.nix;
 
-# haskellName      = haskell.name;
-# haskellUtilities = haskell.utilities;
-# haskellCompiler  = haskell.compiler;
-# haskellPackages  = haskell.packages;
-
-# in
+in
 ########################################
 let
 
 environment =
- import (./.) {
+ (import ./system.nix) {
   inherit pkgs stdenv;
+  inherit project;
  };
 
 in
