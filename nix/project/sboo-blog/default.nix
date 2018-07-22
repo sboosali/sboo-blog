@@ -1,13 +1,14 @@
 ########################################
 { haskellPackages
-, systemPackages
 , projectRoot
 }:
+
+###, systemPackages
 ########################################
 let
 
 derivationViaCabal2nix =
- haskellPackages.callCabal2nix projectRoot {};
+ haskellPackages.callCabal2nix "sboo-blog" projectRoot {};
 
 in
 ########################################

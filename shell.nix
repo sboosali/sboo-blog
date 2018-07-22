@@ -1,1 +1,1 @@
-import ./nix/system/shell.nix
+import ./nix/environment/shell.nix

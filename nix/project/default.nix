@@ -1,8 +1,8 @@
 ########################################
 inputs@
 { haskellPackages
+, projectRoot
 , systemPackages  ? {}
-, projectRoot     ? ../../../.. #TODO
 }:
 ########################################
 let

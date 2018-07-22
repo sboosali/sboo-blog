@@ -1,17 +1,18 @@
 ########################################
 { nixpkgs         ? import ../nixpkgs
+}:
 
 #TODO:
 # , compilerFlavor  ? null
 # , compilerVersion ? null
-
-}:
 ########################################
 let
 
+inherit (nixpkgs) stdenv;
+
 haskell =
  import ../haskell {
-  inherit nixpkgs
+  inherit nixpkgs;
  };
 
 haskellName      = haskell.name;
@@ -23,9 +24,13 @@ in
 ########################################
 let
 
+projectRoot =
+ (../..);
+ # `<project-root>/nix/environment/`
+
 project = 
  import ../project {
-  inherit haskellPackages;
+  inherit haskellPackages projectRoot;
  };
 
 derivationWithHaskellPackages =
@@ -35,16 +40,21 @@ in
 ########################################
 let
 
+sbooUtilities =
+ import ../sboo {
+  inherit haskellUtilities stdenv;
+ };
+
 derivationOnlySystemPackages =
- haskellUtilities.extractBuildInputs
-  haskellCompiler
-  (derivationWithHaskellPackages);
+ sbooUtilities.mkDerivationOnlySystemBuildInputs
+  derivationWithHaskellPackages;
 
  # ^ let `cabal new-build` install all haskell packages,
  # while `nix` provisions all system packages.
 
 environment = 
- derivationOnlySystemPackages.env;
+ ###derivationOnlySystemPackages.env;
+ derivationOnlySystemPackages;
 
 in
 ########################################
